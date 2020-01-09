@@ -82,13 +82,12 @@ public class LoginPageTests extends TestBase {
         userField.clear();
         userField.click();
         userField.sendKeys("abc@mai.com");
-        Thread.sleep(5000);
+        waitUntilElementIsClickable(By.id("login"),30);
         driver.findElement(By.id("login")).click();
-        Thread.sleep(5000);
+        waitUntilElementIsClickable(By.xpath("//p[@class='error-message']"),30);
         System.out.println("Message: " + driver.findElement(By.xpath("//p[@class='error-message']")).getText());
 
-        Thread.sleep(3000);waitUntilElementIsVisible(By
-                .xpath("//p[@class='error-message']"),10);
+        waitUntilElementIsVisible(By.xpath("//p[@class='error-message']"),10);
 
         Assert.assertTrue(driver.findElement(By
                 .xpath("//p[@class='error-message']")).getText().contains("There isn't an account for this email"));
